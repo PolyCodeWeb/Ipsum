@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navbar-height: 5rem;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+} */
+
+@layer components {
+  .btn {
+    &.btn-small {
+      @apply px-3 py-2;
+    }
+    &.btn-medium {
+      @apply px-4 py-3;
+    }
+    &.btn-large {
+      @apply px-5 py-4;
+    }
+    &.btn-rounded {
+      &-full {
+        @apply rounded-full;
+      }
+      &-xl {
+        @apply rounded-xl;
+      }
+      &-lg {
+        @apply rounded-lg;
+      }
+
+      &-md {
+        @apply rounded-md;
+      }
+
+      &-sm {
+        @apply rounded-sm;
+      }
+    }
+    &.btn-solid {
+      @apply border-none;
+    }
+
+    &.btn-bordered {
+      @apply border-4;
+    }
+  }
+  /* Navigation */
+  .navbar {
+    @apply fixed lg:relative justify-between items-center flex mx-auto max-w-lg md:max-w-xl lg:max-w-6xl;
+    height: var(--navbar-height);
+
+    .dropdown-toggle {
+      @apply flex gap-x-2 align-middle;
+
+      svg {
+        @apply mt-1;
+      }
+    }
+
+    .dropdown {
+      @apply relative list-none;
+
+      .dropdown-menu {
+        @apply w-full max-w-60 static lg:absolute flex m-0 right-0 left-0 mt-6 z-10 top-4;
+      }
+    }
+    .mega {
+      @apply min-w-full mx-auto flex -z-10 top-20 left-0 right-0 absolute;
+      transition-property: color, background-color, border-color,
+        text-decoration-color, fill, stroke, opacity, box-shadow, transform,
+        filter, -webkit-backdrop-filter;
+      transition-property: color, background-color, border-color,
+        text-decoration-color, fill, stroke, opacity, box-shadow, transform,
+        filter, backdrop-filter;
+      transition-property: color, background-color, border-color,
+        text-decoration-color, fill, stroke, opacity, box-shadow, transform,
+        filter, backdrop-filter, -webkit-backdrop-filter;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms;
+
+      .dropdown-container {
+        @apply mx-auto grid max-w-7xl grid-cols-4 gap-4 px-6 md:px-10 lg:px-8 xl:gap-8;
+
+        .dropdown-item {
+          @apply p-6 rounded-lg relative flex flex-col;
+
+          .dropdown-link {
+            @apply font-bold mb-4;
+          }
+        }
+      }
+    }
+  }
+
+  .avatar {
+  }
+  .avatar-nav {
+    @apply absolute right-0 items-center gap-2 text-base font-semibold leading-6 py-2 px-1 outline-none hover:outline-none focus:outline-none rounded-lg flex max-w-48 w-auto border-none bg-seasondark-600;
+
+    .avatar-container {
+      @apply p-2 rounded-lg gap-8 mx-auto max-w-48;
+
+      .avatar-item {
+        @apply w-full hover:bg-seasondark-400 p-2 rounded-lg flex flex-col outline-none hover:outline-none focus:outline-none;
+
+        &.avatar-header {
+          @apply bg-seasondark-300/75 text-zinc-100 hover:bg-seasondark-300 hover:text-zinc-200;
+
+          p {
+            @apply font-medium italic;
+          }
+        }
+      }
+    }
+  }
+
+  .mobile-nav {
+    @apply bg-seasondark-600 transition-opacity fixed z-10 hidden invisible inset-0 bottom-0 right-0 left-0 w-full overflow-y-auto p-6;
+    top: var(--navbar-height);
+    height: calc(100vh - var(--navbar-height));
+    transition: opacity 250ms ease-in-out;
+
+    &.mobile-open {
+      @apply visible block;
+    }
+
+    .nav-container {
+      @apply flow-root py-6;
+
+      .dropdown-nav {
+        @apply bg-seasondark-600 p-2 rounded-lg gap-8 mx-auto w-full no-underline appearance-none outline-none flex flex-row border-none focus:border-none hover:border-none active:border-none items-center text-base font-semibold leading-6;
+
+        .dropdown-container {
+          @apply p-2 rounded-lg gap-8 mx-auto w-full;
+
+          .dropdown-item {
+            @apply outline-none my-2 p-2 flex flex-col w-full border-none focus:border-none hover:border-none active:border-none hover:bg-seasondark-400 rounded-lg;
+
+            h2 {
+              @apply font-semibold text-lg text-zinc-100;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

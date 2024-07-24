@@ -1,0 +1,59 @@
+{
+  "ts-node": {
+    // these options are overrides used only by ts-node
+    // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@/Controllers/*": ["controllers/*"],
+      "@/Components/*": ["components/*"],
+      "@/Models/*": ["models/*"],
+      "@/Templates/*": ["components/Templates/*"],
+      "@/Modules/*": ["components/Modules/*"],
+      "@/Providers/*": ["app/providers/*"],
+      "@/Public/*": ["public/*"],
+      "@/Schemas/*": ["schemas/*"],
+      "@/Utils/*": ["utils/*"],
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/index.tsx",
+    ".next/types/**/*.ts"
+, "seed/userSeed.js", "seed/roleSeed.js"  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
