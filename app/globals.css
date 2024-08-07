@@ -54,11 +54,16 @@
   }
   /* Navigation */
   .navbar {
-    @apply fixed lg:relative justify-between items-center flex mx-auto max-w-lg md:max-w-xl lg:max-w-6xl;
-    height: var(--navbar-height);
+    @apply fixed lg:relative justify-between items-center flex mx-auto w-full max-w-none; /*  max-w-lg md:max-w-xl lg:max-w-6xl */
+    min-height: var(--navbar-height);
+
+    .nav-item {
+      @apply text-white hover:text-season-500;
+      transition: all .125s ease-in-out;
+    }
 
     .dropdown-toggle {
-      @apply flex gap-x-2 align-middle;
+      @apply flex gap-x-2 align-middle cursor-pointer;
 
       svg {
         @apply mt-1;
@@ -69,12 +74,14 @@
       @apply relative list-none;
 
       .dropdown-menu {
-        @apply w-full max-w-60 static lg:absolute flex m-0 right-0 left-0 mt-6 z-10 top-4;
+        @apply w-full max-w-60 static lg:absolute flex m-0 right-0 left-0 z-20;
+        top: var(--navbar-height);
       }
     }
     .mega {
-      @apply min-w-full mx-auto flex -z-10 top-20 left-0 right-0 absolute;
-      transition-property: color, background-color, border-color,
+      @apply min-w-full mx-auto flex z-10 left-0 right-0 absolute rounded-b-md;
+      top: calc(var(--navbar-height) + 1.5rem);
+      /* transition-property: color, background-color, border-color,
         text-decoration-color, fill, stroke, opacity, box-shadow, transform,
         filter, -webkit-backdrop-filter;
       transition-property: color, background-color, border-color,
@@ -84,16 +91,16 @@
         text-decoration-color, fill, stroke, opacity, box-shadow, transform,
         filter, backdrop-filter, -webkit-backdrop-filter;
       transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-      transition-duration: 150ms;
+      transition-duration: 150ms; */
 
       .dropdown-container {
-        @apply mx-auto grid max-w-7xl grid-cols-4 gap-4 px-6 md:px-10 lg:px-8 xl:gap-8;
+        @apply text-white mx-auto flex flex-row max-w-7xl gap-4 px-6 md:px-10 lg:px-8 xl:gap-8;
 
         .dropdown-item {
           @apply p-6 rounded-lg relative flex flex-col;
 
           .dropdown-link {
-            @apply font-bold mb-4;
+            @apply font-medium mb-1 text-white hover:text-seasondark-500;
           }
         }
       }
@@ -101,30 +108,44 @@
   }
 
   .avatar {
-  }
-  .avatar-nav {
-    @apply absolute right-0 items-center gap-2 text-base font-semibold leading-6 py-2 px-1 outline-none hover:outline-none focus:outline-none rounded-lg flex max-w-48 w-auto border-none bg-seasondark-600;
+    @apply relative list-none;
 
-    .avatar-container {
-      @apply p-2 rounded-lg gap-8 mx-auto max-w-48;
+    .avatar-image {
+      @apply rounded-full border-4 border-white hover:border-season-500;
+    }
 
-      .avatar-item {
-        @apply w-full hover:bg-seasondark-400 p-2 rounded-lg flex flex-col outline-none hover:outline-none focus:outline-none;
+      .dropdown-menu {
+        @apply rounded-lg w-full pb-2 min-w-48 lg:absolute flex flex-col m-0 z-10 focus-within:outline-none outline-none hover:outline-none focus:outline-none;
+        top: var(--navbar-height);
 
-        &.avatar-header {
-          @apply bg-seasondark-300/75 text-zinc-100 hover:bg-seasondark-300 hover:text-zinc-200;
+        .dropdown-item {
+          @apply py-2 px-4 flex flex-col;
 
-          p {
-            @apply font-medium italic;
+          &.dropdown-header {
+            @apply rounded-t-lg font-semibold;
           }
         }
       }
+
+    &.right .dropdown-menu {
+      @apply right-0;
     }
+
+    &.left .dropdown-menu {
+      @apply left-0;
+    }
+
+    &.center .dropdown-menu {
+      @apply left-0 right-0;
+    }
+
   }
 
+
+
   .mobile-nav {
-    @apply bg-seasondark-600 transition-opacity fixed z-10 hidden invisible inset-0 bottom-0 right-0 left-0 w-full overflow-y-auto p-6;
-    top: var(--navbar-height);
+    @apply transition-opacity fixed z-10 hidden invisible inset-0 bottom-0 right-0 left-0 w-full overflow-y-auto p-6;
+    top: calc(var(--navbar-height) + 1rem);
     height: calc(100vh - var(--navbar-height));
     transition: opacity 250ms ease-in-out;
 
@@ -135,21 +156,41 @@
     .nav-container {
       @apply flow-root py-6;
 
-      .dropdown-nav {
-        @apply bg-seasondark-600 p-2 rounded-lg gap-8 mx-auto w-full no-underline appearance-none outline-none flex flex-row border-none focus:border-none hover:border-none active:border-none items-center text-base font-semibold leading-6;
+      
+
+    .dropdown-toggle {
+      @apply flex flex-row gap-x-2 align-middle cursor-pointer text-lg;
+
+      svg {
+        @apply mt-1;
+      }
+    }
+
+    .nav-item {
+      @apply list-none min-h-12 border-b-2 border-transparent hover:border-season-500 flex gap-x-2 align-middle cursor-pointer focus:bg-zinc-900/75 hover:bg-zinc-900/75 text-white p-2 text-lg;
+    }
+
+    .dropdown {
+      @apply relative flex flex-col w-full;
+
+      .dropdown-menu {
+        @apply w-full flex m-0 right-0 left-0 mb-2 p-2;
+        top: var(--navbar-height);
 
         .dropdown-container {
-          @apply p-2 rounded-lg gap-8 mx-auto w-full;
+          @apply w-full flex flex-col;
 
-          .dropdown-item {
-            @apply outline-none my-2 p-2 flex flex-col w-full border-none focus:border-none hover:border-none active:border-none hover:bg-seasondark-400 rounded-lg;
-
-            h2 {
-              @apply font-semibold text-lg text-zinc-100;
+          li {
+            @apply my-2 hover:bg-season-500 hover:text-zinc-800 w-full flex;
+  
+            a {
+              @apply w-full flex p-2;
             }
           }
         }
+
       }
+    }
     }
   }
 }
@@ -157,5 +198,37 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .toggle-open {
+    animation: toggle-open .25s ease-in;
+
+  }
+  .toggle-close {
+    animation: toggle-close .25s ease-out;
+  }
+
+  .open {
+    @apply toggle-open;
+  }
+
+  .divider {
+    @apply mx-3 my-2 h-1;
+  }
+
+  @keyframes toggle-open {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes toggle-close {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
   }
 }
