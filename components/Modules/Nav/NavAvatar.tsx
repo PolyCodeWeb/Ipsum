@@ -35,6 +35,7 @@ import {
 import { FaCaretDown } from "react-icons/fa6";
 
 import NextLink from "next/link";
+import { IconType } from "react-icons";
 
 const AvatarContext = React.createContext<{
   getItemProps: (
@@ -51,8 +52,9 @@ const AvatarContext = React.createContext<{
   setHasFocusInside: () => {},
   isOpen: false,
 });
-interface AvatarProps {
+type AvatarProps = {
   position: "left" | "right" | "center";
+  icon?: IconType | ReactNode | JSX.ElementType;
   image: boolean;
   imageSource?: string;
   imageSize?: string;
@@ -61,7 +63,7 @@ interface AvatarProps {
   classes?: string;
   children?: ReactNode;
   theme?: string;
-}
+};
 
 export const AvatarComponent = React.forwardRef<
   HTMLDivElement,
@@ -70,6 +72,7 @@ export const AvatarComponent = React.forwardRef<
   (
     {
       position,
+      icon,
       image,
       imageSource,
       imageSize,
@@ -96,6 +99,8 @@ export const AvatarComponent = React.forwardRef<
     const item = useListItem();
 
     const isNested = parentId != null;
+
+    const Icon = icon;
 
     const { floatingStyles, refs, context } = useFloating<HTMLDivElement>({
       nodeId,
@@ -195,7 +200,7 @@ export const AvatarComponent = React.forwardRef<
             })
           )}
         >
-          {image !== false ? (
+          {image && (
             <img
               width={`${imageSize}px`}
               height={`${imageSize}px`}
@@ -203,9 +208,9 @@ export const AvatarComponent = React.forwardRef<
               alt={imageAlt}
               className={`avatar-image ${imageClasses}`}
             />
-          ) : (
-            ""
           )}
+          {image == false && icon && <Icon />}
+
           <FaCaretDown />
         </div>
         <AvatarContext.Provider
@@ -234,14 +239,14 @@ export const AvatarComponent = React.forwardRef<
   }
 );
 
-interface AvatarItemProps {
+type AvatarItemProps = {
   label: string;
   subtext?: string;
   href: string;
   classes?: string;
   disabled: boolean;
   theme?: string;
-}
+};
 
 export const AvatarItem = React.forwardRef<
   HTMLElement,

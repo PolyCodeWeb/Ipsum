@@ -1,11 +1,11 @@
 import React, { useState, ReactNode } from "react";
 import NextLink from "next/link";
 
-interface NavItemProps {
+type NavItemProps = {
   label?: string;
   classes?: string;
   href: string;
-}
+};
 
 export const NavItemComponent = React.forwardRef<
   HTMLElement,

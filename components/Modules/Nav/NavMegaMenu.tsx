@@ -32,11 +32,11 @@ const MegaMenuContext = React.createContext<{
   getItemProps: () => ({}),
   isOpen: false,
 });
-interface MegaMenuProps {
+type MegaMenuProps = {
   label: string;
   children?: ReactNode;
   theme?: string;
-}
+};
 
 export const MegaMenuComponent = React.forwardRef<
   HTMLDivElement,
@@ -118,9 +118,7 @@ export const MegaMenuComponent = React.forwardRef<
         }}
       >
         {isOpen && (
-          <div
-            className={`mega ${isOpen ? "open" : "toggle-close"} ${theme}`}
-          >
+          <div className={`mega ${isOpen ? "open" : "toggle-close"} ${theme}`}>
             <div className="dropdown-container">{children}</div>
           </div>
         )}
@@ -129,10 +127,10 @@ export const MegaMenuComponent = React.forwardRef<
   );
 });
 
-interface MegaMenuItemProps {
+type MegaMenuItemProps = {
   disabled: boolean;
   children?: ReactNode;
-}
+};
 
 export const MegaMenuItem = React.forwardRef<
   HTMLElement,

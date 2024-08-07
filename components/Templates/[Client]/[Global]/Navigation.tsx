@@ -8,7 +8,7 @@ import { MegaMenu, MegaMenuItem } from "@/Modules/Nav/NavMegaMenu";
 import { Avatar, AvatarItem } from "@/Modules/Nav/NavAvatar";
 import { NavItem } from "@/Modules/Nav/NavLink";
 
-import { FaCircleUser } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa6";
 
 import ChildLink from "@/Modules/Links/ChildLink";
 
@@ -261,7 +261,8 @@ export default function Navigation({ ...props }) {
         <div className=""></div>
         <div className="hidden lg:justify-end lg:flex lg:flex-1">
           <Avatar
-            image={true}
+            image={false}
+            icon={FaUser}
             imageSource="https://media.polycode.co/images/JPG/avatar.jpg"
             imageSize="45"
             imageAlt="Avatar Image"
@@ -462,13 +463,7 @@ export default function Navigation({ ...props }) {
           <NavItem classes="" href="" label="Reach Us" />
 
           <div className="divider bg-seasondark-600/65"></div>
-          <Dropdown
-            hasIcon={true}
-            icon={<FaCircleUser />}
-            classes=""
-            theme=""
-            label="Spencer Phillips"
-          >
+          <Dropdown icon={FaUser} classes="" theme="" label="Spencer Phillips">
             <DropdownItem
               disabled={false}
               classes="text-white"
