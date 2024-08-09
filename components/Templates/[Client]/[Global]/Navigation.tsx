@@ -3,10 +3,16 @@ import React, { useState, useRef, useEffect } from "react";
 import NextLink from "next/link";
 import { Cross as Hamburger } from "hamburger-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Dropdown, DropdownItem } from "@/Modules/Nav/NavDropdown";
-import { MegaMenu, MegaMenuItem } from "@/Modules/Nav/NavMegaMenu";
-import { Avatar, AvatarItem } from "@/Modules/Nav/NavAvatar";
-import { NavItem } from "@/Modules/Nav/NavLink";
+
+import {
+  Avatar,
+  AvatarItem,
+  Dropdown,
+  DropdownItem,
+  NavItem,
+  MegaMenu,
+  MegaMenuItem,
+} from "@/Modules/Nav/index";
 
 import { FaUser } from "react-icons/fa6";
 

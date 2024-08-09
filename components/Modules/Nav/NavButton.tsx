@@ -4,7 +4,7 @@ type Button = {
   Classes?: string;
 };
 
-export default function NavButton({
+export default function Button({
   children,
   button,
   ...props
